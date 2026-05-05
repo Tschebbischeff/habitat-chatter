@@ -17,8 +17,9 @@ volumes:
 
 # No Secrets, Syntax Stub:
 # secrets:
-  # SECRET_NAME:
-  #   file: ${SECRETS_DIR}/SECRET_NAME
+#   SECRET_NAME:
+#     file: ${SECRETS_DIR}/SECRET_NAME
+
 
 services:
 
