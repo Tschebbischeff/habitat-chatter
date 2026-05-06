@@ -55,7 +55,7 @@ services:
       - path: ${ENV_DIR}/mosquitto.env
         required: false
     volumes:
-      - ./mosquitto/config:/mosquitto/config:ro
+      - mosquitto-config:/mosquitto/config:ro
       - mosquitto-data:/mosquitto/data
       - mosquitto-logs:/mosquitto/log
     networks:
