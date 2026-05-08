@@ -6,7 +6,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.18.0.0/16
+        - subnet: "${APP_NETWORK_POOL}"
 
 volumes:
   habitat-config:
@@ -14,11 +14,10 @@ volumes:
   mosquitto-data:
   mosquitto-logs:
 
-
-# No Secrets, Syntax Stub:
-# secrets:
-#   SECRET_NAME:
-#     file: ${SECRETS_DIR}/SECRET_NAME
+    # No Secrets, Syntax Stub:
+    # secrets:
+    #   SECRET_NAME:
+    #     file: ${SECRETS_DIR}/SECRET_NAME
 
 
 services:
