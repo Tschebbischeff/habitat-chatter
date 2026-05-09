@@ -44,7 +44,7 @@ services:
   mosquitto:
     image: eclipse-mosquitto:latest
     container_name: ${APP_NAME_HOST}_mosquitto
-    restart: always
+    restart: unless-stopped
     expose:
       - "1883"
       - "9001"
@@ -70,7 +70,7 @@ services:
   mqttx:
     image: emqx/mqttx-web:latest
     container_name: ${APP_NAME_HOST}_mqttx
-    restart: always
+    restart: unless-stopped
     expose:
       - "80"
     env_file:
