@@ -66,6 +66,9 @@ services:
       timeout: 10s
       retries: 5
       start_period: 20s
+    depends_on:
+      habitat-config-chatter:
+        condition: service_completed_successfully
 
   mqttx:
     image: emqx/mqttx-web:latest
