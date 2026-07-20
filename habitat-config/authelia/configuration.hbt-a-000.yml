@@ -1,0 +1,8 @@
+access_control:
+  rules:
+    - domain: 'mosquitto.{{ env "APP_HOST" }}'
+      subject: 'group:mosquitto_users'
+      policy: one_factor
+    - domain: 'mqttx.{{ env "APP_HOST" }}'
+      subject: 'group:mqttx_users'
+      policy: one_factor
