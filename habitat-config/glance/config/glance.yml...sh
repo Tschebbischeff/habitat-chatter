@@ -16,18 +16,37 @@ APP_PAGE_NAME="Apps"
 APP_PAGE_CATEGORY_NAME="Monitoring"
 DEV_PAGE_NAME="Development"
 
+# cat >"$SOURCE_FILE_APP_CATEGORY" <<EOF
+# type: monitor
+# cache: 10s
+# title: "$APP_PAGE_CATEGORY_NAME"
+# sites: []
+# EOF
+
 cat >"$SOURCE_FILE_APP_CATEGORY" <<EOF
-type: monitor
-cache: 10s
+type: split-column
 title: "$APP_PAGE_CATEGORY_NAME"
-sites: []
+max-columns: 1
+widgets: []
 EOF
 
+# cat >"$SOURCE_FILE_APP_SITE" <<'EOF'
+# - title: "MQTTX"
+#   url: https://mqttx.${APP_HOST}
+#   check-url: http://${APP_NAME_HOST}_mqttx:80
+#   icon: /assets/icons/di/emqx.svg
+# EOF
+
 cat >"$SOURCE_FILE_APP_SITE" <<'EOF'
-- title: "MQTTX"
-  url: https://mqttx.${APP_HOST}
-  check-url: http://${APP_NAME_HOST}_mqttx:80
-  icon: /assets/icons/di/emqx.svg
+- type: html
+  source: |
+    <div class="glance-lib"
+      data-lib-femon
+      data-lib-femon-title="MQTTX"
+      data-lib-femon-url="https://mqttx.${APP_HOST}"
+      data-lib-femon-hide-codes=""
+      data-lib-femon-icon="/assets/icons/di/emqx.svg"
+    ></div>
 EOF
 
 cat >"$SOURCE_FILE_DEV_REPOSITORIES" <<'EOF'
@@ -50,11 +69,18 @@ YQ_ADD_CATEGORY='
     .widgets
   ) += load("'"$SOURCE_FILE_APP_CATEGORY"'")
 '
+# YQ_ADD_SITE='
+#   (
+#     .pages[] | select(.name == "'"$APP_PAGE_NAME"'") |
+#     .columns[0].widgets[] | select(.type == "split-column") |
+#     .widgets[] | select(.title == "'"$APP_PAGE_CATEGORY_NAME"'") | .sites
+#   ) += load("'"$SOURCE_FILE_APP_SITE"'")
+# '
 YQ_ADD_SITE='
   (
     .pages[] | select(.name == "'"$APP_PAGE_NAME"'") |
     .columns[0].widgets[] | select(.type == "split-column") |
-    .widgets[] | select(.title == "'"$APP_PAGE_CATEGORY_NAME"'") | .sites
+    .widgets[] | select(.title == "'"$APP_PAGE_CATEGORY_NAME"'") | .widgets
   ) += load("'"$SOURCE_FILE_APP_SITE"'")
 '
 
