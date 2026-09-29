@@ -44,7 +44,7 @@ cat >"$SOURCE_FILE_APP_SITE" <<'EOF'
       data-lib-femon
       data-lib-femon-title="MQTTX"
       data-lib-femon-url="https://mqttx.${APP_HOST}"
-      data-lib-femon-hide-codes=""
+      data-lib-femon-hide-codes="403"
       data-lib-femon-icon="/assets/icons/di/emqx.svg"
     ></div>
 EOF
