@@ -102,13 +102,10 @@ SECRETS_DIR="/run/secrets"
 > [!TIP]
 > Some environment variables are used commonly throughout all modules, you can check the list [here](https://github.com/Tschebbischeff/habitat#environment-variables-for-modules).
 
-*This module does not require any additional environment variables.*
-
-<!--
 | Name | Description | Example | Default |
 | :-- | :-- | :-- | :-- |
-| `EXAMPLE` | An example description. | `some-value` | *Empty* |
--->
+| `MOSQUITTO_VERSION` | Tag for the [Mosquitto docker image](https://hub.docker.com/_/eclipse-mosquitto). | `2.0` | `latest` |
+| `MQTTX_VERSION` | Tag for the [MQTTX docker image](https://hub.docker.com/r/emqx/mqttx-web). | `v1.13.1` | `latest` |
 
 ### Secrets
 

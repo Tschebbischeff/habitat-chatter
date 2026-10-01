@@ -42,7 +42,7 @@ services:
       - mosquitto-config:/habitat-config/target/mosquitto
 
   mosquitto:
-    image: eclipse-mosquitto:latest
+    image: eclipse-mosquitto:${MOSQUITTO_VERSION:?}
     container_name: ${APP_NAME_HOST}_mosquitto
     restart: unless-stopped
     expose:
@@ -71,7 +71,7 @@ services:
         condition: service_completed_successfully
 
   mqttx:
-    image: emqx/mqttx-web:latest
+    image: emqx/mqttx-web:${MQTTX_VERSION:?}
     container_name: ${APP_NAME_HOST}_mqttx
     restart: unless-stopped
     expose:
